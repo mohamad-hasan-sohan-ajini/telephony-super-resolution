@@ -1,15 +1,17 @@
-
 import json
 import random
 from pathlib import Path
 
 import shutil
 from tqdm import tqdm
+
 base_path = Path("/data2/asr/cv-corpus-8.0-2022-01-19/en/wavclips16k/")
 files = list(base_path.glob("*.wav"))
 print(len(files))
 
-agg_dataset = json.loads(Path("/home/aj/repo/baden_asr/train_dataset_aggregation.json").read_text())
+agg_dataset = json.loads(
+    Path("/home/aj/repo/baden_asr/train_dataset_aggregation.json").read_text()
+)
 mozilla_dataset = [i for i in tqdm(agg_dataset) if "common_voice_en" in i["path"]]
 random.shuffle(mozilla_dataset)
 mozilla_dataset[:3]
